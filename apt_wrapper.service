@@ -1,0 +1,11 @@
+[Unit]
+Description=A service file for the apt_wrapper program
+After=network.target network-online.target systemd-networkd.service
+
+[Service]
+Type=simple
+ExecStart=/bin/apt_wrapper
+ExecStop=kill $(cat /apt_wrapper.pid)
+
+[Install]
+WantedBy=multi-user.target
